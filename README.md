@@ -1,43 +1,31 @@
-# Astro Starter Kit: Minimal
+# DeliCharly Fullstack
 
-```sh
-npm create astro@latest -- --template minimal
+Sistema de despacho interno profesional para pizzerías.
+
+## Configuración de Entorno
+
+Este proyecto utiliza variables de entorno para conectarse con Supabase. Debes crear un archivo `.env` en la raíz del proyecto con la siguiente estructura:
+
+```env
+PUBLIC_SUPABASE_URL=tu_url_de_supabase
+PUBLIC_SUPABASE_ANON_KEY=tu_anon_key_de_supabase
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Nota de Seguridad:** El archivo `.env` está incluido en `.gitignore` para evitar que los tokens sean subidos al repositorio. GitHub Pages permite configurar estas variables mediante "Environment Variables" en los settings del repositorio o, al ser tokens públicos de Supabase, puedes configurarlos en el proceso de construcción de GitHub Actions si deseas automatizarlo.
 
-## 🚀 Project Structure
+## Comandos Disponibles
 
-Inside of your Astro project, you'll see the following folders and files:
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Genera los archivos estáticos para producción.
+- `npm run preview`: Previsualiza la build localmente.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Despliegue en GitHub Pages
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Para desplegar:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Asegúrate de tener configurado `site` y `base` en `astro.config.mjs` según tu repositorio de GitHub.
+2. Utiliza GitHub Actions para automatizar el build y deploy. Un flujo típico incluye:
+   - Configurar `Node.js`.
+   - Ejecutar `npm install`.
+   - Ejecutar `npm run build`.
+   - Subir el contenido de la carpeta `dist/` a la rama `gh-pages`.
