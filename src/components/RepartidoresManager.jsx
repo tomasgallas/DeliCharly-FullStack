@@ -53,11 +53,11 @@ export default function RepartidoresManager() {
     <div className="space-y-6">
       <h2 className="text-3xl font-black text-stone-900 tracking-tight">Personal de Reparto</h2>
       
-      <form onSubmit={addRepartidor} className="flex gap-2 bg-white p-4 rounded-xl border border-stone-200">
-        <input placeholder="Nombre" className="p-2 border rounded-lg flex-1" value={name} onChange={(e) => setName(e.target.value)} />
-        <input placeholder="Teléfono" className="p-2 border rounded-lg flex-1" value={phone} onChange={(e) => setPhone(e.target.value)} />
-        <button type="submit" className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
-          <UserPlus size={16} /> Agregar
+      <form onSubmit={addRepartidor} className="flex flex-col sm:flex-row gap-3 bg-white p-4 rounded-xl border border-stone-200">
+        <input placeholder="Nombre" className="p-3 border rounded-lg flex-1 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none text-sm text-stone-800" value={name} onChange={(e) => setName(e.target.value)} />
+        <input placeholder="Teléfono" className="p-3 border rounded-lg flex-1 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none text-sm font-mono text-stone-800" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <button type="submit" className="bg-orange-600 text-white px-5 py-3 rounded-lg flex items-center justify-center gap-2 font-bold hover:bg-orange-700 transition duration-150 uppercase text-xs tracking-wider cursor-pointer">
+          <UserPlus size={16} /> Agregar Repartidor
         </button>
       </form>
 

@@ -74,6 +74,14 @@ export default function Dashboard() {
     setGeneratedLink('');
   };
 
+  const handleClear = () => {
+    setOrderText('');
+    setParsedData(null);
+    setSelectedDriverId('');
+    setPagoVerificado(false);
+    setGeneratedLink('');
+  };
+
   const handleDespachar = async () => {
     if (!parsedData || !selectedDriverId) return;
 
@@ -109,7 +117,7 @@ export default function Dashboard() {
       }).eq('id', driver.id);
     }
     fetchDrivers();
-    alert('Pedido despachado exitosamente');
+    alert('Pedido despachado exitosamente, NO TE OLVIDES DE ENVIAR EL WHATSAPP AL REPARTIDOR!!');
   };
 
   return (
@@ -123,13 +131,22 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white p-6 rounded-2xl border border-stone-200">
+        <div className="bg-white p-6 rounded-2xl border border-stone-200 flex flex-col justify-between space-y-4">
           <textarea
-            className="w-full h-80 p-4 bg-stone-50 border border-stone-200 rounded-xl font-mono text-sm focus:ring-2 focus:ring-orange-500 outline-none"
+            className="w-full h-80 p-4 bg-stone-50 border border-stone-200 rounded-xl font-mono text-sm focus:ring-2 focus:ring-orange-500 outline-none resize-none"
             value={orderText}
             onChange={(e) => handleParse(e.target.value)}
             placeholder="Pega el mensaje de WhatsApp aquí..."
           />
+          {orderText && (
+            <button
+              onClick={handleClear}
+              className="flex items-center justify-center gap-2 py-2 px-4 text-xs font-bold text-stone-600 bg-stone-100 hover:bg-stone-200 active:bg-stone-300 rounded-xl transition duration-150 self-end uppercase tracking-wider"
+            >
+              <Trash2 size={14} />
+              Limpiar Mensaje
+            </button>
+          )}
         </div>
 
         <div className="bg-white p-6 rounded-2xl border border-stone-200 space-y-4">
