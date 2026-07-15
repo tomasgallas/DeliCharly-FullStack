@@ -37,9 +37,9 @@ export default function LoginForm({ onLoginSuccess }) {
         </div>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <input 
-              type="email" 
-              placeholder="Email" 
+            <input
+              type="email"
+              placeholder="Email"
               className="w-full p-3 bg-[#1e1916] border border-stone-700 rounded-xl text-white outline-none focus:ring-2 focus:ring-orange-600"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -47,9 +47,9 @@ export default function LoginForm({ onLoginSuccess }) {
             />
           </div>
           <div>
-            <input 
-              type="password" 
-              placeholder="Contraseña" 
+            <input
+              type="password"
+              placeholder="Contraseña"
               autoComplete="current-password"
               className="w-full p-3 bg-[#1e1916] border border-stone-700 rounded-xl text-white outline-none focus:ring-2 focus:ring-orange-600"
               value={password}
@@ -58,8 +58,8 @@ export default function LoginForm({ onLoginSuccess }) {
             />
           </div>
           {error && <p className="text-red-400 text-xs">{error}</p>}
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={loading}
             className="w-full bg-orange-600 text-white py-3 rounded-xl font-bold hover:bg-orange-700 disabled:opacity-50 transition-all"
           >
