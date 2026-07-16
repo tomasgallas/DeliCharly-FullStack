@@ -3,7 +3,8 @@ import { supabase } from '../lib/supabase';
 import {
   ClipboardPaste, Send, Users, History, LayoutDashboard, LogOut,
   FileText, CheckCircle, AlertCircle, Phone, Calculator, DollarSign,
-  AlertTriangle, Menu, X, Pizza, Trash2, MapPin, Download, Check, ClipboardCheck
+  AlertTriangle, Menu, X, Pizza, Trash2, MapPin, Download, Check, ClipboardCheck,
+  CupSoda
 } from 'lucide-react';
 import { parseWhatsAppOrder, generateWhatsAppLink } from '../utils/parser';
 import { getJornadaDate } from '../utils/date';
@@ -59,6 +60,16 @@ export default function Dashboard() {
       setSelectedDriverId(pendingDriver.id.toString());
       await fetchDrivers();
     }
+  };
+
+  const handleRendirProceed = () => {
+    setSelectedDriverId(pendingDriver.id.toString());
+    setShowRendirModal(false);
+  };
+
+  const handleRendirCancel = () => {
+    setSelectedDriverId('');
+    setShowRendirModal(false);
   };
 
   const handleParse = (text) => {
@@ -210,6 +221,19 @@ export default function Dashboard() {
                 </div>
               </div>
 
+              {parsedData.bebida && (
+                <div className="bg-sky-50 border border-sky-200 p-4 rounded-xl flex items-start gap-3">
+                  <CupSoda className="text-sky-600 shrink-0 mt-0.5 animate-pulse" size={20} />
+                  <div className="flex-1">
+                    <p className="text-xs font-bold text-sky-800 uppercase tracking-wider">🥤 ¡Lleva Bebida!</p>
+                    <p className="text-sm text-sky-950 font-black mt-1 whitespace-pre-line">{parsedData.bebida}</p>
+                    <p className="text-[10px] text-sky-700 mt-1 italic font-medium">
+                      *Asegúrate de cargar las botellas antes de que el repartidor se vaya de la sucursal.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {isTransfer && (
                 <label className="flex items-center gap-2 p-3 bg-amber-50 rounded-xl border border-amber-200">
                   <input type="checkbox" checked={pagoVerificado} onChange={e => setPagoVerificado(e.target.checked)} />
@@ -231,7 +255,8 @@ export default function Dashboard() {
               <RendirModal
                 driver={pendingDriver}
                 onConfirm={handleRendirConfirm}
-                onCancel={() => setShowRendirModal(false)}
+                onProceed={handleRendirProceed}
+                onCancel={handleRendirCancel}
                 isOpen={showRendirModal}
               />
 

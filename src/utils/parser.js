@@ -18,6 +18,10 @@ export const parseWhatsAppOrder = (text) => {
   const telefono = extract(/Teléfono:\s*([^\n]+)/i) || '';
   const referencia = extract(/Referencia:\s*([^\n]+)/i) || '';
 
+  // Extraer bebidas de manera robusta
+  const bebidaMatch = cleanText.match(/BEBIDAS[^\n]*\n([\s\S]*?)(?=\n(?:Subtotal|Costo de envío|TOTAL|Espero tu respuesta|$))/i);
+  const bebida = bebidaMatch ? bebidaMatch[1].trim() : '';
+
   return {
     numero,
     direccion,
@@ -27,7 +31,8 @@ export const parseWhatsAppOrder = (text) => {
     referencia,
     total: parseFloat(totalStr.replace(/\D/g, '')) || 0,
     envio: parseFloat(envioStr.replace(/\D/g, '')) || 0,
-    isTransfer: /transferencia|mercado pago|mercadopago|pago online|débito|debito|crédito|credito/i.test(pago)
+    isTransfer: /transferencia|mercado pago|mercadopago|pago online|débito|debito|crédito|credito/i.test(pago),
+    bebida
   };
 };
 
